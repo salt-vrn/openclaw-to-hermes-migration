@@ -128,8 +128,9 @@ For each file/group:
      -H "Authorization: Bearer $AMOCRM_ACCESS_TOKEN"
    ```
 5. If any token is expired — note it in the report, don't try to refresh
+6. **Token files** (avito_token.json, service_account.json, etc.) — also go to `.env`. Read the token value, write to `.env`, delete the file from workspace. NEVER leave token files in workspace.
 
-**Verify:** `grep -c "credentials.json"` in workspace should be 0.
+**Verify:** `grep -c "credentials.json"` in workspace should be 0. `grep -c "token.json"` in workspace should be 0.
 
 ---
 
@@ -167,6 +168,8 @@ Documentation: https://hermes-agent.nousresearch.com/docs/user-guide/configurati
    - **API keys** — if the job uses APIs, verify keys are in .env
 3. Create each job in Hermes using `cronjob create`
 4. **DO NOT** create all jobs at once. Create 2-3, test, then continue.
+5. After creating each job — run it manually to verify it works: `cronjob run <job_id>`
+6. Check that the job's script exists, paths are correct, API keys are accessible
 
 **Verify:** list all jobs, compare count with OpenClaw.
 
@@ -243,6 +246,7 @@ Migration complete: OpenClaw → Hermes
 | Copy MEMORY.md as-is | OpenClaw concept, doesn't exist in Hermes | Distribute to AGENTS.md + project README.md |
 | Copy TOOLS.md as-is | OpenClaw concept | Distribute to project README.md files |
 | Copy credentials.json to workspace | Secrets in workspace = security risk | Parse keys → write to .env |
+| Copy token files (avito_token.json, etc.) to workspace | Same as credentials — secrets belong in .env | Read token → write to .env → delete file |
 | Restart gateway yourself | Deadlock — gateway can't restart from inside session | Ask user to restart |
 | Create all cron jobs at once | If one is wrong, all waste tokens | Create 2-3, test, continue |
 | Guess config format | Config format changes between versions | Read official docs |
