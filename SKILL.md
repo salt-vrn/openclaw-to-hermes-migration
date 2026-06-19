@@ -268,4 +268,3 @@ Migration complete: OpenClaw → Hermes
 - **Hermes configuration:** https://hermes-agent.nousresearch.com/docs/user-guide/configuration
 - **Hermes advanced memory (workspace rules):** https://github.com/salt-vrn/hermes-advanced-memory
 - **Cron jobs:** https://hermes-agent.nousresearch.com/docs/user-guide/configuration (cron section)
-- **Skills:** https://hermes-agent.nousresearch.com/docs/skills
