@@ -105,6 +105,14 @@ For each file/group:
    - `USER.md` → user profile info goes to Hermes config or AGENTS.md
    - `BOOT.md`, `HEARTBEAT.md` → skip (OpenClaw-specific)
 3. Copy project files, scripts, docs, media to their folders
+4. **docx/pdf files** — don't just dump them in a `docs/` folder. For each:
+   - Read content: `python3 -c "from docx import Document; print('\n'.join(p.text for p in Document('file.docx').paragraphs))"` or ask the user
+   - Determine which project it belongs to
+   - Move to that project folder
+   - Add a reference in the project's README.md: `## Documents: filename.docx — [brief description]`
+   - If unsure — ask the user, don't guess
+
+**Verify:** no orphan files in generic `docs/` folders. Every document is referenced in a project README.
 
 **Verify:** count files in old vs new. No files should be lost.
 
